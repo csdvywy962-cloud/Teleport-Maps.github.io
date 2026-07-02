@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (localStorage.getItem('day-completed-' + dayId) === 'true') {
             document.getElementById('btn-' + dayId)?.classList.add('day-completed');
         }
+        
     });
 
     // 4. Восстановление скролла
@@ -24,6 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedPos = localStorage.getItem('scrollPos');
         if (savedPos) window.scrollTo(0, parseInt(savedPos));
     }, 300);
+
+    // Внутри DOMContentLoaded:
+const savedTheme = localStorage.getItem('theme');
+const btn = document.getElementById('theme-toggle');
+
+if (savedTheme === 'dark') {
+    document.body.classList.add('dark-theme');
+    if (btn) btn.innerText = 'Light'; // Если сейчас темно, кнопка предлагает "Светлый"
+} else {
+    document.body.classList.remove('dark-theme');
+    if (btn) btn.innerText = 'Dark'; // Если сейчас светло, кнопка предлагает "Темный"
+}
 
     updateProgress();
 });
