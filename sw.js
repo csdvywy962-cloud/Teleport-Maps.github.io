@@ -84,9 +84,22 @@ window.addEventListener('scroll', () => {
 
 // ФУНКЦИЯ ТЕМЫ (добавлено)
 function toggleTheme() {
-    document.body.classList.toggle('dark-theme');
-    const isDark = document.body.classList.contains('dark-theme');
+    const body = document.body;
+    const btn = document.getElementById('theme-toggle'); // Находим нашу кнопку по ID
+    
+    // Переключаем класс
+    body.classList.toggle('dark-theme');
+    
+    // Проверяем, есть ли теперь класс dark-theme
+    const isDark = body.classList.contains('dark-theme');
+    
+    // Сохраняем состояние
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    
+    // И САМОЕ ВАЖНОЕ: меняем текст кнопки
+    if (btn) {
+        btn.innerText = isDark ? 'Light' : 'Dark';
+    }
 }
 
 
