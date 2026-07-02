@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аланья 2026 | Наш Офлайн Маршрут</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header-container">
+        <button class="back-button" onclick="window.history.back()">←</button>
+        <button id="theme-toggle" onclick="toggleTheme()">Dark</button>
+    </div>
+ 
+    <header class="header-card">
+        <div class="date-badge">Сегодня: 27 июля 2026 г. (День 1)</div>
+        <h1 class="route-title">Маршрут Аланья</h1>
+    </header>
+ 
+    <div class="outer-map-card">
+        <h3 class="map-title">🗺️ Офлайн Карта Маршрута</h3>
+        <div class="inner-map-placeholder">
+            Картинка map.jpg не найдена.<br>Закинь файл карты в папку проекта.
+        </div>
+    </div>
+ 
+    <div class="days-tabs" id="tabsContainer">
+        <button class="tab-btn active" onclick="switchDay(1)" id="btn-day-1">27 июл (День 1)</button>
+        <button class="tab-btn" onclick="switchDay(2)" id="btn-day-2">28 июл (День 2)</button>
+        <button class="tab-btn" onclick="switchDay(3)" id="btn-day-3">29 июл (День 3)</button>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+        <span id="progress-text">0 из 0 локаций</span>
+    </div>
+ 
+    <!-- ДЕНЬ 1 -->
+    <div class="route-container active" id="day-1">
+        <div class="location-node" id="node-hotel" onclick="openReport('hotel')">
+            <div class="mini-img" id="mini-hotel"><img src="hotel.jpg" onerror="this.parentElement.innerText='🏨'"></div>
+            <div class="node-info">
+                <div class="node-title">Заселение в отель</div>
+                <div class="node-meta">Конаклы • Маршрут: Начало • 14:00+</div>
+            </div>
+            <div class="checkbox-custom" onclick="toggleVisited(event, 'hotel')"></div>
+        </div>
+        <div class="location-node" id="node-beach" onclick="openReport('beach')">
+            <div class="mini-img" id="mini-beach"><img src="beach.jpg" onerror="this.parentElement.innerText='🏖️'"></div>
+            <div class="node-info">
+                <div class="node-title">Пляж Конаклы</div>
+                <div class="node-meta">След. точка • Пешком • 16:30</div>
+            </div>
+            <div class="checkbox-custom" onclick="toggleVisited(event, 'beach')"></div>
+        </div>
+    </div>
+ 
+    <!-- ДЕНЬ 2 -->
+    <div class="route-container" id="day-2">
+        <div class="location-node" id="node-damlatas" onclick="openReport('damlatas')">
+            <div class="mini-img" id="mini-damlatas"><img src="damlatas.jpg" onerror="this.parentElement.innerText='🦇'"></div>
+            <div class="node-info">
+                <div class="node-title">1. Пещера Дамлаташ</div>
+                <div class="node-meta">Старт в городе • Долмуш • 16:00</div>
+            </div>
+            <div class="checkbox-custom" onclick="toggleVisited(event, 'damlatas')"></div>
+        </div>
+        <div class="location-node" id="node-teleferik" onclick="openReport('teleferik')">
+            <div class="mini-img" id="mini-teleferik"><img src="teleferik.jpg" onerror="this.parentElement.innerText='🚡'"></div>
+            <div class="node-info">
+                <div class="node-title">2. Канатная дорога</div>
+                <div class="node-meta">След. точка • 2 мин пешком • 16:45</div>
+            </div>
+            <div class="checkbox-custom" onclick="toggleVisited(event, 'teleferik')"></div>
+        </div>
+        <div class="location-node" id="node-castle" onclick="openReport('castle')">
+            <div class="mini-img" id="mini-castle"><img src="castle.jpg" onerror="this.parentElement.innerText='🏰'"></div>
+            <div class="node-info">
+                <div class="node-title">3. Крепость Аланьи</div>
+                <div class="node-meta">Конец пути • На вершине • 18:00</div>
+            </div>
+            <div class="checkbox-custom" onclick="toggleVisited(event, 'castle')"></div>
+        </div>
+    </div>
+ 
+    <!-- ДЕНЬ 3 -->
+    <div class="route-container" id="day-3">
+        <div class="location-node" id="node-ship" onclick="openReport('ship')">
+            <div class="mini-img" id="mini-ship"><img src="ship.jpg" onerror="this.parentElement.innerText='🏴‍☠️'"></div>
+            <div class="node-info">
+                <div class="node-title">Пиратский корабль</div>
+                <div class="node-meta">Порт Аланьи • Трансфер • 10:00</div>
+            </div>
+            <div class="checkbox-custom" onclick="toggleVisited(event, 'ship')"></div>
+        </div>
+    </div>
+ 
+    <!-- Шторка -->
+    <div class="sheet-overlay" id="overlay" onclick="closeReport()"></div>
+    <div class="bottom-sheet" id="sheet">
+        <div class="sheet-header">
+            <h3 id="m-title">Название</h3>
+            <button class="close-sheet" onclick="closeReport()">×</button>
+        </div>
+        <div class="sheet-body">
+            <div class="sheet-main-img" id="m-img-box">
+                <img id="m-img" src="" alt="">
+            </div>
+           
+            <div class="report-grid">
+                <div class="report-item"><div class="label">Описание</div><div class="val" id="m-desc">--</div></div>
+                <div class="report-item"><div class="label">Как далеко</div><div class="val" id="m-dist">--</div></div>
+                <div class="report-item"><div class="label">Как доехать / дойти</div><div class="val" id="m-route">--</div></div>
+                <div class="report-item highlight"><div class="label">Сколько взять денег (Мама + я + брат)</div><div class="val" id="m-cost">--</div></div>
+                <div class="report-item"><div class="label">Сколько выделить времени</div><div class="val" id="m-time">--</div></div>
+                <div class="report-item"><div class="label">Какая одежда</div><div class="val" id="m-cloth">--</div></div>
+                <div class="report-item"><div class="label">Что взять с собой</div><div class="val" id="m-pack">--</div></div>
+                <div class="report-item highlight"><div class="label">Дополнительный лайфхак</div><div class="val" id="m-hack">--</div></div>
+            </div>
+           
+            <div class="btn-group">
+                <a href="" id="m-map-link" target="_blank" class="action-btn btn-success">🗺️ Проложить путь (Яндекс.Карты)</a>
+                <button class="action-btn btn-primary" id="m-action-btn" onclick="clickSheetAction()">Отметить как пройденное</button>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- ПОДКЛЮЧАЕМ ВНЕШНИЙ ФАЙЛ JS -->
+    <script src="sw.js"></script>
+</body>
+</html>
