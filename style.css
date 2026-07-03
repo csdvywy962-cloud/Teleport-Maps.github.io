@@ -400,26 +400,6 @@ body.dark-theme .report-item.highlight {
     transition: width 0.4s ease;
 }
 
-/* Улучшенный стиль для плашки даты */
-.date-badge {
-    display: inline-block;
-    padding: 10px 24px; /* Увеличили отступы, чтобы плашка стала больше */
-    border-radius: 25px; /* Сделали более округлой */
-    font-weight: 700;
-    font-size: 16px;    /* Увеличили размер шрифта */
-    margin-bottom: 15px;
-    text-align: center;
-    color: #ffffff !important; /* Текст всегда белый */
-    background-color: rgba(59, 130, 246, 0.5); /* Прозрачно-голубой для светлой темы */
-    transition: all 0.3s ease;
-}
-
-/* Настройки для темной темы */
-body.dark-theme .date-badge {
-    background-color: #3b82f6 !important; /* Насыщенный синий в темной теме */
-    color: #ffffff !important;
-}
-
 
 
 
