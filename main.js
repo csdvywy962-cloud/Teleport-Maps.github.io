@@ -15,6 +15,7 @@ function updateDateDisplay() {
 
 // 1. Инициализация при загрузке
 document.addEventListener('DOMContentLoaded', () => {
+        
     console.log("Скрипт загрузился!"); // Проверь консоль F12: видишь эту надпись?
     
     // Вывод даты
@@ -30,7 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
     updateDateDisplay();
     
     const savedTheme = localStorage.getItem('theme');
-    applyTheme(savedTheme === 'dark');
+    if (savedTheme === 'dark') {
+        applyTheme(true);
+    } else {
+        applyTheme(false);
+    }
 
     // Восстановление галочек
     document.querySelectorAll('.location-node').forEach(node => {
@@ -56,16 +61,23 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgress();
 });
 
+const themeToggle = document.getElementById('theme-toggle'); // Убедись, что ID кнопки такой
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark-theme');
+        applyTheme(isDark);
+    });
+}
+
 // 2. ФУНКЦИЯ ТЕМЫ (та самая, которой не хватало)
+// Функция применения темы
 function applyTheme(isDark) {
-    const body = document.body;
-    const btn = document.getElementById('theme-toggle');
     if (isDark) {
-        body.classList.add('dark-theme');
-        if (btn) btn.innerText = 'Light';
+        document.body.classList.add('dark-theme');
+        localStorage.setItem('theme', 'dark'); // Сохраняем выбор
     } else {
-        body.classList.remove('dark-theme');
-        if (btn) btn.innerText = 'Dark';
+        document.body.classList.remove('dark-theme');
+        localStorage.setItem('theme', 'light'); // Сохраняем выбор
     }
 }
 
