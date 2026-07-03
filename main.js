@@ -15,43 +15,44 @@ function updateDateDisplay() {
 
 // 1. Инициализация при загрузке
 document.addEventListener('DOMContentLoaded', () => {
-        
-    console.log("Скрипт загрузился!"); // Проверь консоль F12: видишь эту надпись?
-    
-    // Вывод даты
-    const dateElement = document.getElementById('current-date');
+    console.log("Скрипт загрузился!");
+
+    // 1. Вывод даты
+    // Используем 'date-element', убедись, что в HTML у тебя <div id="date-element"></div>
+    const dateElement = document.getElementById('date-element');
     if (dateElement) {
         const now = new Date();
         dateElement.innerText = now.toLocaleDateString('ru-RU');
         console.log("Дата установлена:", dateElement.innerText);
     } else {
-        console.error("Элемент 'current-date' не найден в HTML!");
+        console.error("Элемент 'date-element' не найден в HTML!");
     }
-    // Восстановление темы
-    updateDateDisplay();
-    
-   const themeToggle = document.getElementById('theme-toggle');
+
+    // 2. Управление темой
+    const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
 
-    // 1. Проверяем, что уже сохранено в памяти телефона
+    // Применяем сохраненную тему сразу при загрузке
     if (localStorage.getItem('theme') === 'dark') {
         body.classList.add('dark-theme');
-        themeToggle.textContent = 'Light'; // Меняем текст кнопки
+        if (themeToggle) themeToggle.textContent = 'Light';
+    } else {
+        if (themeToggle) themeToggle.textContent = 'Dark';
     }
 
-    // 2. Обработчик нажатия
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-theme');
-        
-        if (body.classList.contains('dark-theme')) {
-            localStorage.setItem('theme', 'dark');
-            themeToggle.textContent = 'Light';
-        } else {
-            localStorage.setItem('theme', 'light');
-            themeToggle.textContent = 'Dark';
-        }
-    });
-    // Восстановление галочек
+    // Обработчик нажатия на кнопку темы
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            const isDark = body.classList.contains('dark-theme');
+            
+            // Сохраняем выбор в localStorage
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? 'Light' : 'Dark';
+        });
+    }
+
+    // 3. Восстановление галочек посещенных мест
     document.querySelectorAll('.location-node').forEach(node => {
         const id = node.id.replace('node-', '');
         if (localStorage.getItem('visited-' + id) === 'true') {
@@ -59,20 +60,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Восстановление состояния дней
+    // 4. Восстановление состояния завершенных дней
     ['day-1', 'day-2', 'day-3'].forEach(dayId => {
         if (localStorage.getItem('day-completed-' + dayId) === 'true') {
-            document.getElementById('btn-' + dayId)?.classList.add('day-completed');
+            const btn = document.getElementById('btn-' + dayId);
+            if (btn) btn.classList.add('day-completed');
         }
     });
 
-    // Восстановление скролла
+    // 5. Восстановление скролла
     setTimeout(() => {
         const savedPos = localStorage.getItem('scrollPos');
         if (savedPos) window.scrollTo(0, parseInt(savedPos));
     }, 300);
 
-    updateProgress();
+    // 6. Обновление прогресса (если эта функция есть у тебя в другом месте)
+    if (typeof updateProgress === 'function') {
+        updateProgress();
+    }
 });
 
 const themeToggle = document.getElementById('theme-toggle'); // Убедись, что ID кнопки такой
