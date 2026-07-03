@@ -1,6 +1,23 @@
+// --- ДОБАВЬ ЭТО В САМЫЙ КОНЕЦ main.js ---
+
+function updateDateDisplay() {
+    const dateElement = document.getElementById('current-date');
+    if (!dateElement) return;
+
+    const now = new Date();
+    // Форматируем дату (ДД.ММ.ГГГГ)
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = now.getFullYear();
+    
+    dateElement.innerText = `${day}.${month}.${year}`;
+}
+
 // 1. Инициализация при загрузке
 document.addEventListener('DOMContentLoaded', () => {
     // Восстановление темы
+    updateDateDisplay();
+    
     const savedTheme = localStorage.getItem('theme');
     applyTheme(savedTheme === 'dark');
 
