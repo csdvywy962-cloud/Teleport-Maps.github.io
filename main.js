@@ -30,13 +30,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Восстановление темы
     updateDateDisplay();
     
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        applyTheme(true);
-    } else {
-        applyTheme(false);
+   const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // 1. Проверяем, что уже сохранено в памяти телефона
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-theme');
+        themeToggle.textContent = 'Light'; // Меняем текст кнопки
     }
 
+    // 2. Обработчик нажатия
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-theme');
+        
+        if (body.classList.contains('dark-theme')) {
+            localStorage.setItem('theme', 'dark');
+            themeToggle.textContent = 'Light';
+        } else {
+            localStorage.setItem('theme', 'light');
+            themeToggle.textContent = 'Dark';
+        }
+    });
     // Восстановление галочек
     document.querySelectorAll('.location-node').forEach(node => {
         const id = node.id.replace('node-', '');
