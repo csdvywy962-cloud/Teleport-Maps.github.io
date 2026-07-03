@@ -29,13 +29,12 @@
         <div style="font-weight: 700; font-size: 18px; margin-top: 5px;">Аланья (Конаклы) 2026</div>
     </a>
     </div>
-    <script src="sw.js"></script>
-    <script>
+    <script src="js.js"></script>
+
+<script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('Service Worker зарегистрирован'))
-        .catch(err => console.log('Ошибка регистрации:', err));
+      navigator.serviceWorker.register('./sw.js');
     });
   }
 </script>
