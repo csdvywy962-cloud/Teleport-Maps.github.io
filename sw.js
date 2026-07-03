@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Восстановление темы
         const savedTheme = localStorage.getItem('theme');
     applyTheme(savedTheme === 'dark');
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-theme');
     }
 
 
