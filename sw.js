@@ -4,6 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('dark-theme');
     }
 
+     {
+    // 1. Применяем сохраненную тему
+    const savedTheme = localStorage.getItem('theme');
+    applyTheme(savedTheme === 'dark');
+    
+    // ... здесь будет остальной твой код (скролл, галочки и т.д.)
+});
+
     // 2. Восстановление галочек
     document.querySelectorAll('.location-node').forEach(node => {
         const id = node.id.replace('node-', '');
@@ -95,24 +103,26 @@ window.addEventListener('scroll', () => {
     localStorage.setItem('scrollPos', window.scrollY);
 }, { passive: true });
 
-// ФУНКЦИЯ ТЕМЫ (добавлено)
-function toggleTheme() {
+// --- ЦЕНТР УПРАВЛЕНИЯ ТЕМОЙ ---
+function applyTheme(isDark) {
     const body = document.body;
-    const btn = document.getElementById('theme-toggle'); // Находим нашу кнопку по ID
+    const btn = document.getElementById('theme-toggle');
     
-    // Переключаем класс
-    body.classList.toggle('dark-theme');
-    
-    // Проверяем, есть ли теперь класс dark-theme
-    const isDark = body.classList.contains('dark-theme');
-    
-    // Сохраняем состояние
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    
-    // И САМОЕ ВАЖНОЕ: меняем текст кнопки
-    if (btn) {
-        btn.innerText = isDark ? 'Light' : 'Dark';
+    if (isDark) {
+        body.classList.add('dark-theme');
+        if (btn) btn.innerText = 'Light'; // Кнопка предлагает переключить на Светлую
+    } else {
+        body.classList.remove('dark-theme');
+        if (btn) btn.innerText = 'Dark';  // Кнопка предлагает переключить на Темную
     }
+}
+
+function toggleTheme() {
+    const isDark = document.body.classList.contains('dark-theme');
+    const newThemeDark = !isDark;
+    
+    applyTheme(newThemeDark);
+    localStorage.setItem('theme', newThemeDark ? 'dark' : 'light');
 }
 
 
