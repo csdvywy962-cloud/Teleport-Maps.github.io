@@ -400,23 +400,24 @@ body.dark-theme .report-item.highlight {
     transition: width 0.4s ease;
 }
 
-/* Стили для даты — теперь они «слушаются» переменные темы */
+/* Улучшенный стиль для плашки даты */
 .date-badge {
-    background-color: var(--accent); /* Теперь это привязано к синему цвету сайта */
-    color: #ffffff;                  /* Белый текст всегда хорошо виден на синем */
-    padding: 10px 20px;
-    border-radius: 20px;
     display: inline-block;
-    margin: 10px auto;
-    font-weight: bold;
+    padding: 10px 24px; /* Увеличили отступы, чтобы плашка стала больше */
+    border-radius: 25px; /* Сделали более округлой */
+    font-weight: 700;
+    font-size: 16px;    /* Увеличили размер шрифта */
+    margin-bottom: 15px;
     text-align: center;
-    transition: background-color 0.3s ease; /* Плавный переход цвета */
+    color: #ffffff !important; /* Текст всегда белый */
+    background-color: rgba(59, 130, 246, 0.5); /* Прозрачно-голубой для светлой темы */
+    transition: all 0.3s ease;
 }
 
-/* Принудительно задаем поведение в темной теме, если нужно */
+/* Настройки для темной темы */
 body.dark-theme .date-badge {
-    background-color: var(--accent); /* Цвет остается тем же синим, но он гармонирует с темным фоном */
-    filter: brightness(0.8);        /* Чуть приглушаем яркость в темной теме, чтобы не слепило */
+    background-color: #3b82f6 !important; /* Насыщенный синий в темной теме */
+    color: #ffffff !important;
 }
 
 
