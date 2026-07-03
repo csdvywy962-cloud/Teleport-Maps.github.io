@@ -197,6 +197,13 @@ body.dark-theme #theme-toggle {
     transform: scale(0.95);
 }
 
+/* Добавь это в конец своего style.css */
+.visited {
+    background-color: blue !important; /* Или другой цвет, который ты хочешь */
+    color: white !important;
+    border: 2px solid darkblue;
+}
+
 /* Цвета для темной темы */
 .dark-theme #theme-toggle {
     background-color: #444;
