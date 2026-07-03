@@ -400,4 +400,25 @@ body.dark-theme .report-item.highlight {
     transition: width 0.4s ease;
 }
 
+/* Стили для даты — теперь они «слушаются» переменные темы */
+.date-badge {
+    background-color: var(--accent); /* Теперь это привязано к синему цвету сайта */
+    color: #ffffff;                  /* Белый текст всегда хорошо виден на синем */
+    padding: 10px 20px;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 10px auto;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease; /* Плавный переход цвета */
+}
+
+/* Принудительно задаем поведение в темной теме, если нужно */
+body.dark-theme .date-badge {
+    background-color: var(--accent); /* Цвет остается тем же синим, но он гармонирует с темным фоном */
+    filter: brightness(0.8);        /* Чуть приглушаем яркость в темной теме, чтобы не слепило */
+}
+
+
+
 
