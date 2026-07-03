@@ -88,7 +88,9 @@ function switchDay(dayNum) {
 }
 
 
-
-window.addEventListener('scroll', () => {
-    localStorage.setItem('scrollPos', window.scrollY);
-}, { passive: true });
+// Этот код слушает, если localStorage меняется в другой вкладке
+window.addEventListener('storage', (event) => {
+    if (event.key === 'theme') {
+        applyTheme(event.newValue === 'dark');
+    }
+});
