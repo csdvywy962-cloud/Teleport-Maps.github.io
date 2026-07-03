@@ -1,7 +1,7 @@
 // --- ДОБАВЬ ЭТО В САМЫЙ КОНЕЦ main.js ---
 
 function updateDateDisplay() {
-    const dateElement = document.getElementById('current-date');
+        const dateElement = document.getElementById('new-date-id'); 
     if (!dateElement) return;
 
     const now = new Date();
@@ -10,7 +10,7 @@ function updateDateDisplay() {
     const month = String(now.getMonth() + 1).padStart(2, '0');
     const year = now.getFullYear();
     
-    dateElement.innerText = `${day}.${month}.${year}`;
+    dateElement.innerText = `${String(now.getDate()).padStart(2, '0')}.${String(now.getMonth() + 1).padStart(2, '0')}.${now.getFullYear()}`;
 }
 
 // 1. Инициализация при загрузке
