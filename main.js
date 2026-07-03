@@ -15,6 +15,17 @@ function updateDateDisplay() {
 
 // 1. Инициализация при загрузке
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("Скрипт загрузился!"); // Проверь консоль F12: видишь эту надпись?
+    
+    // Вывод даты
+    const dateElement = document.getElementById('current-date');
+    if (dateElement) {
+        const now = new Date();
+        dateElement.innerText = now.toLocaleDateString('ru-RU');
+        console.log("Дата установлена:", dateElement.innerText);
+    } else {
+        console.error("Элемент 'current-date' не найден в HTML!");
+    }
     // Восстановление темы
     updateDateDisplay();
     
