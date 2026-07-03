@@ -1,0 +1,6 @@
+{
+  "name": "Teleport Maps",
+  "short_name": "Teleport",
+  "start_url": "index.html",
+  "display": "standalone"
+}
