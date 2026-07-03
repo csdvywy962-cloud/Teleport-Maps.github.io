@@ -1,16 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Восстановление темы
+        const savedTheme = localStorage.getItem('theme');
+    applyTheme(savedTheme === 'dark');
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-theme');
     }
 
-     {
-    // 1. Применяем сохраненную тему
-    const savedTheme = localStorage.getItem('theme');
-    applyTheme(savedTheme === 'dark');
-    
-    // ... здесь будет остальной твой код (скролл, галочки и т.д.)
-});
 
     // 2. Восстановление галочек
     document.querySelectorAll('.location-node').forEach(node => {
