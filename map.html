@@ -6,29 +6,30 @@
     <title>Аланья 2026 | Наш Офлайн Маршрут</title>
     <link rel="stylesheet" href="style.css">
     <style>
-    /* Финальная настройка плашки даты */
-.date-badge {
-    display: inline-block !important;
-    padding: 12px 28px !important;
-    border-radius: 25px !important;
-    font-weight: 700 !important;
-    font-size: 16px !important;
-    margin-bottom: 15px !important;
-    text-align: center !important;
-    
-    /* Светлая тема */
-    background-color: rgba(59, 130, 246, 0.2) !important;
-    color: #000000 !important; 
-    border: none !important;
-    
-    transition: all 0.3s ease !important;
-}
+    /* Стиль плашки даты, встроенный прямо в HTML */
+    .date-badge {
+        display: inline-block !important;
+        padding: 15px 30px !important; /* Еще больше размер */
+        border-radius: 30px !important;
+        font-weight: 800 !important;
+        font-size: 18px !important;
+        margin: 20px auto !important;
+        text-align: center !important;
+        
+        /* Светлая тема: прозрачно-голубой фон + черный текст */
+        background-color: rgba(59, 130, 246, 0.2) !important;
+        color: #000000 !important; 
+        border: 2px solid rgba(59, 130, 246, 0.3) !important; /* Добавили легкую рамку */
+        
+        transition: all 0.3s ease !important;
+    }
 
-/* Темная тема */
-body.dark-theme .date-badge {
-    background-color: #3b82f6 !important;
-    color: #ffffff !important;
-}
+    /* Темная тема: принудительно меняем на синий фон + белый текст */
+    body.dark-theme .date-badge {
+        background-color: #3b82f6 !important;
+        color: #ffffff !important;
+        border: none !important;
+    }
 </style>
 </head>
 <body>
