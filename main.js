@@ -65,11 +65,14 @@ function initApp() {
     });
 
     ['day-1', 'day-2', 'day-3'].forEach(dayId => {
-        if (localStorage.getItem('day-completed-' + dayId) === 'true') {
-            const btn = document.getElementById('btn-' + dayId);
-            if (btn) btn.classList.add('day-completed');
+    if (localStorage.getItem('day-completed-' + dayId) === 'true') {
+        const btn = document.getElementById('btn-' + dayId);
+        if (btn && !btn.classList.contains('day-completed')) {
+            btn.classList.add('day-completed');
+            triggerVibration(); // Вибрация сработает при "прорисовке" завершенного дня
         }
-    });
+    }
+});
 
     setTimeout(() => {
         const savedPos = localStorage.getItem('scrollPos');
@@ -157,3 +160,11 @@ window.addEventListener('storage', (event) => {
         applyTheme(event.newValue === 'dark');
     }
 });
+
+function triggerVibration() {
+    // Проверяем, поддерживает ли телефон вибрацию
+    if ("vibrate" in navigator) {
+        // Вибрирует 300 миллисекунд (легкий отклик)
+        navigator.vibrate(300);
+    }
+}
