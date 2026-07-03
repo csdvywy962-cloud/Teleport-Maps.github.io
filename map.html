@@ -6,23 +6,29 @@
     <title>Аланья 2026 | Наш Офлайн Маршрут</title>
     <link rel="stylesheet" href="style.css">
     <style>
-    .date-badge {
-        display: inline-block !important;
-        padding: 10px 24px !important;
-        border-radius: 25px !important;
-        font-weight: 700 !important;
-        font-size: 16px !important;
-        margin-bottom: 15px !important;
-        text-align: center !important;
-        color: #ffffff !important;
-        background-color: rgba(59, 130, 246, 0.5) !important;
-        transition: all 0.3s ease !important;
-    }
+    /* Финальная настройка плашки даты */
+.date-badge {
+    display: inline-block !important;
+    padding: 12px 28px !important;
+    border-radius: 25px !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    margin-bottom: 15px !important;
+    text-align: center !important;
+    
+    /* Светлая тема */
+    background-color: rgba(59, 130, 246, 0.2) !important;
+    color: #000000 !important; 
+    border: none !important;
+    
+    transition: all 0.3s ease !important;
+}
 
-    body.dark-theme .date-badge {
-        background-color: #3b82f6 !important;
-        color: #ffffff !important;
-    }
+/* Темная тема */
+body.dark-theme .date-badge {
+    background-color: #3b82f6 !important;
+    color: #ffffff !important;
+}
 </style>
 </head>
 <body>
