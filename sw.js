@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Восстановление темы
-        const savedTheme = localStorage.getItem('theme');
+    // Восстановление темы
+    const savedTheme = localStorage.getItem('theme');
     applyTheme(savedTheme === 'dark');
-    }
 
-
-    // 2. Восстановление галочек
+    // Восстановление галочек
     document.querySelectorAll('.location-node').forEach(node => {
         const id = node.id.replace('node-', '');
         if (localStorage.getItem('visited-' + id) === 'true') {
@@ -13,31 +11,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. Восстановление состояния дней
+    // Восстановление состояния дней
     ['day-1', 'day-2', 'day-3'].forEach(dayId => {
         if (localStorage.getItem('day-completed-' + dayId) === 'true') {
             document.getElementById('btn-' + dayId)?.classList.add('day-completed');
         }
-        
     });
 
-    // 4. Восстановление скролла
+    // Восстановление скролла
     setTimeout(() => {
         const savedPos = localStorage.getItem('scrollPos');
         if (savedPos) window.scrollTo(0, parseInt(savedPos));
     }, 300);
-
-    // Внутри DOMContentLoaded:
-const savedTheme = localStorage.getItem('theme');
-const btn = document.getElementById('theme-toggle');
-
-if (savedTheme === 'dark') {
-    document.body.classList.add('dark-theme');
-    if (btn) btn.innerText = 'Light'; // Если сейчас темно, кнопка предлагает "Светлый"
-} else {
-    document.body.classList.remove('dark-theme');
-    if (btn) btn.innerText = 'Dark'; // Если сейчас светло, кнопка предлагает "Темный"
-}
 
     updateProgress();
 });
