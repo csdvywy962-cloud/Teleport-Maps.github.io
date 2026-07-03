@@ -183,13 +183,25 @@ body.dark-theme #theme-toggle {
     /* Свечение остается голубым, как ты просил */
 }
 
-/* Эффект при наведении (одинаковый для обеих тем) */
-.back-button:hover, #theme-toggle:hover {
-    background: var(--accent) !important; 
-    color: #ffffff !important;
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.7) !important;
+#theme-toggle {
+    transition: background-color 0.2s, transform 0.1s;
+    background-color: #ddd; /* Цвет по умолчанию */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
 }
 
+/* Эффект нажатия (вспышка) */
+#theme-toggle:active {
+    background-color: #aaa; /* Цвет вспышки */
+    transform: scale(0.95);
+}
+
+/* Цвета для темной темы */
+.dark-theme #theme-toggle {
+    background-color: #444;
+    color: white;
+}
 /* --- Стили для блока даты и заголовка --- */
 /* --- Стили для блока даты и заголовка --- */
 
