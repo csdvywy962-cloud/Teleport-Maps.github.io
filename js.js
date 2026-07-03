@@ -86,3 +86,9 @@ function switchDay(dayNum) {
     window.scrollTo(0, 0); 
     updateProgress();
 }
+
+
+
+window.addEventListener('scroll', () => {
+    localStorage.setItem('scrollPos', window.scrollY);
+}, { passive: true });
