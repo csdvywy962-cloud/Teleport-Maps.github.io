@@ -400,6 +400,29 @@ body.dark-theme .report-item.highlight {
     transition: width 0.4s ease;
 }
 
+/* Финальные стили для даты */
+.date-badge {
+    display: inline-block !important;
+    padding: 15px 30px !important;
+    border-radius: 30px !important;
+    font-weight: 800 !important;
+    font-size: 20px !important;
+    margin: 20px auto !important;
+    text-align: center !important;
+    border: none !important; /* УБРАЛИ ОБВОДКУ */
+    
+    /* Светлая тема */
+    background-color: rgba(59, 130, 246, 0.2) !important;
+    color: #000000 !important; 
+    transition: all 0.3s ease !important;
+}
+
+/* Темная тема */
+body.dark-theme .date-badge {
+    background-color: #3b82f6 !important; /* Голубой без прозрачности */
+    color: #ffffff !important;           /* Белый текст */
+    border: none !important;             /* БЕЗ ОБВОДКИ */
+}
 
 
 
