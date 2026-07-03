@@ -1,3 +1,4 @@
+// 1. Инициализация при загрузке
 document.addEventListener('DOMContentLoaded', () => {
     // Восстановление темы
     const savedTheme = localStorage.getItem('theme');
@@ -27,21 +28,35 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgress();
 });
 
-// --- ФУНКЦИИ ---
+// 2. ФУНКЦИЯ ТЕМЫ (та самая, которой не хватало)
+function applyTheme(isDark) {
+    const body = document.body;
+    const btn = document.getElementById('theme-toggle');
+    if (isDark) {
+        body.classList.add('dark-theme');
+        if (btn) btn.innerText = 'Light';
+    } else {
+        body.classList.remove('dark-theme');
+        if (btn) btn.innerText = 'Dark';
+    }
+}
 
+function toggleTheme() {
+    const isDark = document.body.classList.contains('dark-theme');
+    applyTheme(!isDark);
+    localStorage.setItem('theme', !isDark ? 'dark' : 'light');
+}
+
+// 3. ФУНКЦИИ МАРШРУТА (они были у тебя, проверь, чтобы они были ПОСЛЕ функций темы)
 function updateProgress() {
     const active = document.querySelector('.route-container.active');
     if (!active) return;
-    
     const all = active.querySelectorAll('.location-node');
     const visited = active.querySelectorAll('.location-node.visited');
-    
-    // Обновляем текст и бар
     document.getElementById('progress-text').innerText = `${visited.length} из ${all.length} локаций пройдено`;
     const bar = document.getElementById('progress-bar-fill');
     if (bar) bar.style.width = (all.length > 0 ? (visited.length / all.length) * 100 : 0) + '%';
-
-    // ЛОГИКА ЗЕЛЕНОЙ КНОПКИ (добавлено)
+    
     const dayId = active.id;
     const btn = document.getElementById('btn-' + dayId);
     if (all.length > 0 && all.length === visited.length) {
@@ -57,10 +72,8 @@ function toggleVisited(event, id) {
     if (event) event.stopPropagation();
     const node = document.getElementById('node-' + id);
     if (!node) return;
-    
     node.classList.toggle('visited');
     localStorage.setItem('visited-' + id, node.classList.contains('visited'));
-    
     updateProgress();
     if (navigator.vibrate) navigator.vibrate(100);
 }
@@ -68,40 +81,12 @@ function toggleVisited(event, id) {
 function switchDay(dayNum) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.route-container').forEach(c => c.classList.remove('active'));
-    
     document.getElementById(`btn-day-${dayNum}`)?.classList.add('active');
     document.getElementById(`day-${dayNum}`)?.classList.add('active');
-    
     window.scrollTo(0, 0); 
     updateProgress();
 }
 
-// --- СОХРАНЕНИЕ СКРОЛЛА ---
 window.addEventListener('scroll', () => {
     localStorage.setItem('scrollPos', window.scrollY);
 }, { passive: true });
-
-// --- ЦЕНТР УПРАВЛЕНИЯ ТЕМОЙ ---
-function applyTheme(isDark) {
-    const body = document.body;
-    const btn = document.getElementById('theme-toggle');
-    
-    if (isDark) {
-        body.classList.add('dark-theme');
-        if (btn) btn.innerText = 'Light'; // Кнопка предлагает переключить на Светлую
-    } else {
-        body.classList.remove('dark-theme');
-        if (btn) btn.innerText = 'Dark';  // Кнопка предлагает переключить на Темную
-    }
-}
-
-function toggleTheme() {
-    const isDark = document.body.classList.contains('dark-theme');
-    const newThemeDark = !isDark;
-    
-    applyTheme(newThemeDark);
-    localStorage.setItem('theme', newThemeDark ? 'dark' : 'light');
-}
-
-
-
