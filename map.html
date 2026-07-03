@@ -5,32 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Аланья 2026 | Наш Офлайн Маршрут</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-    /* Стиль плашки даты, встроенный прямо в HTML */
-    .date-badge {
-        display: inline-block !important;
-        padding: 15px 30px !important; /* Еще больше размер */
-        border-radius: 30px !important;
-        font-weight: 800 !important;
-        font-size: 18px !important;
-        margin: 20px auto !important;
-        text-align: center !important;
-        
-        /* Светлая тема: прозрачно-голубой фон + черный текст */
-        background-color: rgba(59, 130, 246, 0.2) !important;
-        color: #000000 !important; 
-        border: 2px solid rgba(59, 130, 246, 0.3) !important; /* Добавили легкую рамку */
-        
-        transition: all 0.3s ease !important;
-    }
-
-    /* Темная тема: принудительно меняем на синий фон + белый текст */
-    body.dark-theme .date-badge {
-        background-color: #3b82f6 !important;
-        color: #ffffff !important;
-        border: none !important;
-    }
-</style>
+    
 </head>
 <body>
     <div class="header-container">
@@ -39,7 +14,7 @@
     </div>
  
     <header class="header-card">
-        <div id="current-date" class="date-badge"></div>
+        <div id="new-date-id" style="display: inline-block !important; padding: 15px 30px !important; border-radius: 30px !important; font-weight: 800 !important; font-size: 20px !important; margin: 20px auto !important; text-align: center !important; background-color: rgba(59, 130, 246, 0.2) !important; color: #000000 !important; border: 2px solid rgba(59, 130, 246, 0.3) !important;"></div>
         <h1 class="route-title">Маршрут Аланья</h1>
     </header>
  
